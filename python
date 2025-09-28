@@ -1,0 +1,45 @@
+# Weekly Coding Challenge #2: ToDo App (Console Version)
+
+tasks = []
+
+def show_menu():
+    print("\n--- ToDo App ---")
+    print("1. Add Task")
+    print("2. View Tasks")
+    print("3. Mark Task as Completed")
+    print("4. Delete Task")
+    print("5. Exit")
+
+while True:
+    show_menu()
+    choice = input("Choose an option: ")
+
+    if choice == "1":
+        task = input("Enter a new task: ")
+        tasks.append({"task": task, "done": False})
+        print("✅ Task added!")
+    
+    elif choice == "2":
+        print("\n--- Your Tasks ---")
+        for i, t in enumerate(tasks, 1):
+            status = "✔" if t["done"] else " "
+            print(f"{i}. [{status}] {t['task']}")
+    
+    elif choice == "3":
+        task_no = int(input("Enter task number to mark completed: "))
+        if 0 < task_no <= len(tasks):
+            tasks[task_no-1]["done"] = True
+            print("✅ Task marked as completed!")
+    
+    elif choice == "4":
+        task_no = int(input("Enter task number to delete: "))
+        if 0 < task_no <= len(tasks):
+            tasks.pop(task_no-1)
+            print("🗑 Task deleted!")
+    
+    elif choice == "5":
+        print("👋 Exiting ToDo App. Goodbye!")
+        break
+    
+    else:
+        print("❌ Invalid option. Try again.")
